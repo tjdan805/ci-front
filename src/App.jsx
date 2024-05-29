@@ -13,14 +13,17 @@ function App() {
     setState({ ...state, [name]: value });
   };
   const onSubmitHandler = async () => {
-    const res = await axios.post("http://localhost:8080/api/boards", state);
+    const res = await axios.post(
+      `http://${location.host}:8080/api/boards`,
+      state
+    );
     if (res.status === 201) {
       getAllBoards();
       setState({ ...iState });
     }
   };
   const getAllBoards = async () => {
-    const res = await axios.get("http://localhost:8080/api/boards");
+    const res = await axios.get(`http://${location.host}:8080/api/boards`);
     if (res.data) setBoards(res.data);
   };
   useEffect(() => {
